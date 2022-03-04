@@ -1,3 +1,6 @@
+let customBool = 0;
+let customColor = "";
+
 function setupGrid() 
 {
     let gridSize = prompt("Please input how many squares you'd like per line (Min: 2, Max: 100)");
@@ -38,61 +41,80 @@ function setupGrid()
     for(let j = 0; j < boxes.length; j++) 
     {
         boxes[j].addEventListener('mouseenter', () => {
+
+            if(customBool === 0) 
+            {
+                if(redBool === 0) 
+                {
+                    red = red - 1;
+                    if(red === 0) 
+                    {
+                        redBool = 1;
+                    }
+                }
+                else if(redBool === 1) 
+                {
+                    red = red + 1;
+                    if(red === 100) 
+                    {
+                        redBool = 0;
+                    }
+                }
+
+                if(greenBool === 0) 
+                {
+                    green = green - 1;
+                    if(green === 0) 
+                    {
+                        greenBool = 1;
+                    }
+                }
+                else if(greenBool === 1) 
+                {
+                    green = green + 1;
+                    if(green === 100) 
+                    {
+                        greenBool = 0;
+                    }
+                }
+
+                if(blueBool === 0) 
+                {
+                    blue = blue - 1;
+                    if(blue === 0) 
+                    {
+                        blueBool = 1;
+                    }
+                }
+                else if(blueBool === 1) 
+                {
+                    blue = blue + 1;
+                    if(blue === 100) 
+                    {
+                       blueBool = 0;
+                    }
+                }
+
+                colorGradient = "rgb(" + red + "%, " + green + "%, " + blue + "%)";
+            }
+            else if(customBool == 1) 
+            {
+                colorGradient = customColor;
+            }
+
             boxes[j].style.backgroundColor = colorGradient;
-            if(redBool === 0) 
-            {
-                red = red - 1;
-                if(red === 0) 
-                {
-                    redBool = 1;
-                }
-            }
-            else if(redBool === 1) 
-            {
-                red = red + 1;
-                if(red === 100) 
-                {
-                    redBool = 0;
-                }
-            }
-
-            if(greenBool === 0) 
-            {
-                green = green - 1;
-                if(green === 0) 
-                {
-                    greenBool = 1;
-                }
-            }
-            else if(greenBool === 1) 
-            {
-                green = green + 1;
-                if(green === 100) 
-                {
-                    greenBool = 0;
-                }
-            }
-
-            if(blueBool === 0) 
-            {
-                blue = blue - 1;
-                if(blue === 0) 
-                {
-                    blueBool = 1;
-                }
-            }
-            else if(blueBool === 1) 
-            {
-                blue = blue + 1;
-                if(blue === 100) 
-                {
-                    blueBool = 0;
-                }
-            }
-
-            colorGradient = "rgb(" + red + "%, " + green + "%, " + blue + "%)";
         });
     }
+}
+
+function enablePicked(color) 
+{
+    customBool = 1;
+    customColor = color;
+}
+
+function disablePicked() {
+    customBool = 0;
 }
 
 setupGrid();
